@@ -1,14 +1,19 @@
-text = '''Humpty Dumpty sat on a wall
+text2 = '''Humpty Dumpty sat on a wall
 Humpty Dumpty had a great fall
 all the king's horses and all the king's men
 couldn't put Humpty together again'''
+
+text = '''This little piggy went to market
+This little piggy stayed home
+This little piggy had roast beef
+This little piggy had none
+And this little piggy cried wee wee wee all the way home'''
 
 def manhattan_distance(data, i, j):
     row_i = data[i]
     row_j = data[j]
     distance = 0
-    print("Data _ (" + str(i) + ") = ", data[i])
-    for k in range(len(data[i])):
+    for k in range(min(len(row_i), len(row_j))):
         distance = distance + abs(row_i[k] - row_j[k])
     return distance
 
@@ -40,7 +45,6 @@ def single_doc_tf_idf(doc, doc_index, term_frequencies, document_frequencies):
 
 
 def main(text):
-    # tasks your code should perform:
 
     docs = [line.lower().split() for line in text.split('\n')]
 
@@ -48,48 +52,38 @@ def main(text):
     for doc in docs:
         for word in doc:
             unique_words.add(word)
-    
 
-    # 2. go over each unique word and calculate its term frequency, and its document frequency
     term_frequencies = [[]]*len(docs)
     for i, doc in enumerate(docs):
         term_frequencies[i] = compute_term_frequency(doc)
-    print("\n\n",term_frequencies)
 
     document_frequencies = {}
     for word in unique_words:
         f = compute_document_frequency(word, docs)
         document_frequencies[word] = f
-    print("\n\n", document_frequencies)
 
-
-    # 3. after you have your term frequencies and document frequencies, go over each line in the text and 
-    # calculate its TF-IDF representation, which will be a vector
-    # 
     docs_tf_idf = []
     for j, doc in enumerate(docs):
         doc_tf_idf = single_doc_tf_idf(doc, j, term_frequencies, document_frequencies)
         docs_tf_idf.append(doc_tf_idf)
 
-    print("\n\n TF-IDF Reporesentation:\n",docs_tf_idf)
-
-    # 4. after you have calculated the TF-IDF representations for each line in the text, you need to
-    # calculate the distances between each line to find which are the closest.
+    max_length = 0
+    for doc in docs:
+        if len(doc) > max_length:
+            max_length = len(doc)
+    pad_docs = docs_tf_idf # pad_zeroes(docs_tf_idf, max_length)
 
     min_dist = np.inf
     pair = None
-    for i,x in enumerate(docs_tf_idf):
-        for j,y in enumerate(x):
-            dist = manhattan_distance(docs_tf_idf, i, j)
+    for i,x in enumerate(pad_docs):
+        for j in range(i+1,len(pad_docs)):
+            dist = manhattan_distance(pad_docs, i, j)
+            #print("Distance between "+str(i)+ " and "+str(j)+ " is: "+str(dist))
             if dist < min_dist:
                 min_dist = dist
                 pair = (i, j)
     
-    print("\n\nBest Pair:",pair)
+    print(pair)
+    
 
-
-main(text)
-
-
-
-
+main(text2)
