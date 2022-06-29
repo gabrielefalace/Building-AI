@@ -1,79 +1,40 @@
-<!-- This is the markdown template for the final project of the Building AI course, 
-created by Reaktor Innovations and University of Helsinki. 
-Copy the template, paste it to your GitHub README and edit! -->
-
-# Project Title
+# Classification of pigmented lesions of the nail bed
 
 Final project for the Building AI course
 
 ## Summary
 
-Describe briefly in 2-3 sentences what your project is about. About 250 characters is a nice length! 
+A system for recognizing potentially cancerous lesions of the nail bed.
 
 
 ## Background
 
-Which problems does your idea solve? How common or frequent is this problem? What is your personal motivation? Why is this topic important or interesting?
+Pigmented lesions in the nail bed can have a variety of sources: some more benign (such as hematoma), some more concerning (melanoma). 
+Under-nail melanoma is really dangerous as the discoloration is often neglected or dismissed as unimportant and often is diagnosed as cancer too late.
 
-This is how you make a list, if you need one:
-* problem 1
-* problem 2
-* etc.
+Machine Learning can be used to classify the different lesions based on caracteristics or even images of the affected nails.
 
 
 ## How is it used?
 
-Describe the process of using the solution. In what kind situations is the solution needed (environment, time, etc.)? Who are the users, what kinds of needs should be taken into account?
-
-Images will make your README look nice!
-Once you upload an image to your repository, you can link link to it like this (replace the URL with file path, if you've uploaded an image to Github.)
-![Cat](https://upload.wikimedia.org/wikipedia/commons/5/5e/Sleeping_cat_on_her_back.jpg)
-
-If you need to resize images, you have to use an HTML tag, like this:
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Sleeping_cat_on_her_back.jpg" width="300">
-
-This is how you create code examples:
-```
-def main():
-   countries = ['Denmark', 'Finland', 'Iceland', 'Norway', 'Sweden']
-   pop = [5615000, 5439000, 324000, 5080000, 9609000]   # not actually needed in this exercise...
-   fishers = [1891, 2652, 3800, 11611, 1757]
-
-   totPop = sum(pop)
-   totFish = sum(fishers)
-
-   # write your solution here
-
-   for i in range(len(countries)):
-      print("%s %.2f%%" % (countries[i], 100.0))    # current just prints 100%
-
-main()
-```
-
+The users could take pictures of the nail and answer some questions. The system would answer with a class "benign"/"potentially cancerous".
 
 ## Data sources and AI methods
-Where does your data come from? Do you collect it yourself or do you use data collected by someone else?
-If you need to use links, here's an example:
-[Twitter API](https://developer.twitter.com/en/docs)
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
+Data should be gathered from dermatologists who work on these problems daily, collecting instances of both the above mentioned classes. 
+
+The primary input would be images of the lesions. The Secondary source could be answers to questions (e.g. I hit my nail with an hammer could be useful to take into consideration). 
+
+I would propose using a CNN to classify images and then use the additional information to skew the prediction a bit (towards the cautious side, promting the patient to maybe get that extra check).
 
 ## Challenges
 
-What does your project _not_ solve? Which limitations and ethical considerations should be taken into account when deploying a solution like this?
+The project is a high risk one (dealing with potentially life threatening conditions) and should undergo heavy MDR compliance.
 
 ## What next?
 
-How could your project grow and become something even more? What kind of skills, what kind of assistance would you  need to move on? 
-
+The ML project per se, if evolved, could be a consumer app where the user could self check nail discolorations and track them. The model could be extended also to cope with other pigmented lesions, not only those in the nail bed.
 
 ## Acknowledgments
 
-* list here the sources of inspiration 
-* do not use code, images, data etc. from others without permission
-* when you have permission to use other people's materials, always mention the original creator and the open source / Creative Commons licence they've used
-  <br>For example: [Sleeping Cat on Her Back by Umberto Salvagnin](https://commons.wikimedia.org/wiki/File:Sleeping_cat_on_her_back.jpg#filelinks) / [CC BY 2.0](https://creativecommons.org/licenses/by/2.0)
-* etc
+
