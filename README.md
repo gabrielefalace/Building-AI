@@ -16,7 +16,7 @@ Machine Learning can be used to classify the different lesions based on caracter
 
 ## How is it used?
 
-The users could take pictures of the nail and answer some questions. The system would answer with a class "benign"/"potentially cancerous".
+The users could take pictures of the nail via a mobile app and answer some questions. The system would answer with a class "benign"/"potentially cancerous".
 
 ## Data sources and AI methods
 
