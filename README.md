@@ -4,7 +4,7 @@ Final project for the Building AI course
 
 ## Summary
 
-A system for recognizing potentially cancerous lesions of the nail bed.
+A system for recognizing potentially cancerous lesions of the nail bed (aka a mole under the nail, often a longitudinal stripe).
 
 
 ## Background
